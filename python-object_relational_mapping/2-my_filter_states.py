@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Lists all states matching a given name."""
+"""Lists states matching a given name."""
 
 import MySQLdb
 import sys
@@ -21,7 +21,9 @@ if __name__ == "__main__":
         )
     )
 
-    for row in cursor.fetchall():
+    rows = cursor.fetchall()
+
+    for row in rows:
         print(row)
 
     cursor.close()
