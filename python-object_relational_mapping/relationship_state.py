@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Defines the State model with a cities relationship."""
+"""State class with relationship to City."""
 
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import declarative_base, relationship
@@ -9,7 +9,7 @@ Base = declarative_base()
 
 
 class State(Base):
-    """Represents a state in the database."""
+    """Represents a state."""
 
     __tablename__ = "states"
 
@@ -17,7 +17,6 @@ class State(Base):
     name = Column(String(128), nullable=False)
     cities = relationship(
         "City",
-        back_populates="state",
         cascade="all, delete-orphan",
-        order_by="City.id"
+        backref="state"
     )

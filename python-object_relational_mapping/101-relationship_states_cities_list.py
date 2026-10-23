@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Lists all states and their related cities."""
+"""Lists all states and their cities."""
 
 import sys
 from sqlalchemy import create_engine
@@ -10,8 +10,8 @@ from relationship_city import City
 
 if __name__ == "__main__":
     engine = create_engine(
-        "mysql+mysqldb://{}:{}@localhost:{}/{}".format(
-            sys.argv[1], sys.argv[2], 3306, sys.argv[3]
+        "mysql+mysqldb://{}:{}@localhost:3306/{}".format(
+            sys.argv[1], sys.argv[2], sys.argv[3]
         ),
         pool_pre_ping=True
     )
@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     for state in states:
         print("{}: {}".format(state.id, state.name))
-        for city in state.cities:
+        for city in sorted(state.cities, key=lambda x: x.id):
             print("    {}: {}".format(city.id, city.name))
 
     session.close()
