@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-"""State class with relationship to City."""
+"""Defines the State class."""
 
 from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 
 
 Base = declarative_base()
@@ -17,6 +18,6 @@ class State(Base):
     name = Column(String(128), nullable=False)
     cities = relationship(
         "City",
-        cascade="all, delete-orphan",
-        backref="state"
+        backref="state",
+        cascade="all, delete-orphan"
     )

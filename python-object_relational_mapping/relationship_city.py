@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""City class linked to State."""
+"""Defines the City class."""
 
 from sqlalchemy import Column, ForeignKey, Integer, String
 from relationship_state import Base
@@ -12,4 +12,8 @@ class City(Base):
 
     id = Column(Integer, primary_key=True, nullable=False)
     name = Column(String(128), nullable=False)
-    state_id = Column(Integer, ForeignKey("states.id"), nullable=False)
+    state_id = Column(
+        Integer,
+        ForeignKey("states.id"),
+        nullable=False
+    )
